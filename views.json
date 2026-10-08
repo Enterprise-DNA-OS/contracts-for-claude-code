@@ -1,13 +1,34 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Contracts for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Contract week",
+    "subtitle": "Fictional demo until you import your records",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Renewal decisions",
+        "sql": "select reference,name,owner,action_on,days_left,decision,overdue_obligations,due_reminders from renewal_queue order by action_on nulls first"
+      },
+      {
+        "title": "Obligations",
+        "sql": "select contract,title,owner,due_on,contract_status from obligation_queue order by due_on"
+      },
+      {
+        "title": "Reminders",
+        "sql": "select contract,title,owner,due_on from reminder_queue order by due_on"
+      }
+    ]
+  },
+  {
+    "name": "exceptions",
+    "title": "Contract evidence and retention",
+    "sections": [
+      {
+        "title": "Evidence and record checks",
+        "sql": "select reference,rule,finding from compliance_findings order by reference,rule"
+      },
+      {
+        "title": "Personal information and holds",
+        "sql": "select reference,jurisdiction,retention_review_on,retention_basis,legal_hold from contracts where contains_personal order by retention_review_on nulls first"
       }
     ]
   }

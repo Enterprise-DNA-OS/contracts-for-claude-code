@@ -1,24 +1,9 @@
-# Why there is no front end
+# Why this version has no front end
 
-ContractSafe is a database with a subscription. The tables underneath it are ordinary: a few entities, a few relationships, a handful of workflows you repeat every week. What you pay for is the layer on top that lets people who do not write SQL get at those tables. Screens, filters, dashboards, forms.
+Contract managers spend the week checking notice dates, asking owners for decisions, following up on obligations, collecting signed evidence and reviewing records kept after closure. Those jobs work from a database and a short set of commands.
 
-That layer used to be the whole product, because talking to a database was hard. It is not hard any more. Open this folder in Claude Code, describe what you want, and it writes the query, runs it, and explains the answer. Ask a question the dashboard never had a chart for and you still get an answer.
+The free version is an operator's contract register. It produces read-only HTML snapshots and internal documents. It has no shared web inbox, mobile capture, offline document reader, drag-and-drop file upload, built-in signing, PDF text search, redlining or automatic email reminders. It cannot infer contract clauses from a file location. Keep signed documents in your controlled archive and enter verified dates.
 
-## What you gain
+Claude Code, Codex, OpenCode or Cursor can run the same CLI and edit the same code. Local PGlite accepts one process at a time. Shared Postgres needs authenticated access, restricted roles, backups and a deployment appropriate to confidential agreements. A database owner can change records outside the CLI; operator names are not proof of identity.
 
-- **Better answers.** A dashboard shows what the vendor decided to chart. Here you ask your own question, in your own words, and get it answered against your own data.
-- **No seats.** Everyone who needs to look can look. The bill does not grow with headcount.
-- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time. There is no export step because there is nothing to leave.
-- **A process that matches you.** When your way of working changes, you add a command. You do not wait for a feature request to clear.
-
-## What you give up
-
-- **A visual board.** Stages are a table you ask about, not cards you drag.
-- **A phone app.** It runs where Claude Code runs.
-- **A vendor help desk.** This is open source. Enterprise DNA supports the installed version for businesses that want someone to call.
-
-## Who this fits
-
-Small teams who already use Claude Code, or who would rather learn to ask than learn another interface. If your team needs a screen to look at all day, keep ContractSafe. If you need the answers more than the screens, this is cheaper, faster and yours.
-
-Installed and run for you: https://enterprisedna.co/omni/instead-of/contractsafe
+Enterprise DNA can build a web front end, document archive connections, signing integration or a different stack into your version. Those are scoped deliverables, not hidden features of the free base. Omni by Enterprise DNA installs and operates the agreed version for one setup fee, then a retainer.

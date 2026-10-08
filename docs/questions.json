@@ -1,0 +1,42 @@
+[
+  [
+    "Which notice deadlines have already passed?",
+    "renewals-due"
+  ],
+  [
+    "Which reminders are due in the next fourteen days?",
+    "reminders-due"
+  ],
+  [
+    "Which renewal decisions are missing or stale?",
+    "review-queue"
+  ],
+  [
+    "Which near-term agreements also have overdue obligations?",
+    "renewals-due"
+  ],
+  [
+    "Which active agreements have no signed evidence reference?",
+    "compliance"
+  ],
+  [
+    "Which closed agreements still have outstanding duties?",
+    "obligations-due"
+  ],
+  [
+    "Which owners have the most overdue work items?",
+    "owner-workload"
+  ],
+  [
+    "What annual value is recorded for each counterparty and currency?",
+    "exposure"
+  ],
+  [
+    "Which agreements have been quiet for more than fourteen days?",
+    "attention"
+  ],
+  [
+    "Which personal-information records need a retention review?",
+    "compliance"
+  ]
+]

@@ -1,11 +1,60 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "renewal-brief",
+    "title": "Internal renewal decision brief",
+    "for_each": "select id,reference from contracts where status in ('draft','active')",
+    "file": "reference",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Agreement",
+        "note": "Internal review only. This document does not renew, cancel or serve notice. Confirm terms against the signed agreement.",
+        "sql": "select reference,name,counterparty,owner,currency,annual_value,effective_on,ends_on,nonrenew_on from contracts where id=$1"
+      },
+      {
+        "title": "Current renewal position",
+        "sql": "select action_on,days_left,decision,reviewer,overdue_obligations,due_reminders from renewal_queue where id=$1"
+      },
+      {
+        "title": "Outstanding promises",
+        "sql": "select reference,title,owner,due_on from obligations where contract_id=$1 and status='open' order by due_on"
+      },
+      {
+        "title": "Evidence",
+        "sql": "select title,kind,location from evidence where contract_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "obligation-register",
+    "title": "Contract obligation register",
+    "for_each": "select id,reference from contracts",
+    "file": "reference",
+    "sections": [
+      {
+        "title": "Delivery evidence",
+        "sql": "select reference,title,owner,due_on,status,completed_on,completion_evidence from obligations where contract_id=$1 order by due_on"
+      },
+      {
+        "title": "History",
+        "sql": "select actor,action,note,created_at from activity where contract_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "retention-review",
+    "title": "Personal information retention review",
+    "for_each": "select id,reference from contracts where contains_personal",
+    "file": "reference",
+    "sections": [
+      {
+        "title": "Purpose and review date",
+        "note": "Check lawful purpose, record-keeping duties and legal holds. This report never authorises destruction.",
+        "sql": "select reference,jurisdiction,retention_review_on,retention_basis,legal_hold from contracts where id=$1"
+      },
+      {
+        "title": "Findings",
+        "sql": "select rule,finding from compliance_findings where id=$1"
+      }
     ]
   }
 ]

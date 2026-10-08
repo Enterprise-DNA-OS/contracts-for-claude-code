@@ -1,0 +1,3 @@
+Contract ID,Contract Number,Contract Name,Counterparty,Owner,Value (currency),Effective Date,Termination Date,Deadline to Nonrenew,Autorenew,Renewal Term,Annual Value,Value (number)
+CS-9001,IMPORT-1,"North, service agreement",North Supply,Casey,NZD,2026-01-01,2027-01-01,2026-12-01,Yes,annual,1200,2400
+CS-9002,IMPORT-2,Service agreement,South Supply,Casey,AUD,2026-01-01,2027-02-01,,No,,,5000

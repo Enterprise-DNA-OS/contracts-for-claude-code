@@ -1,115 +1,83 @@
-<h1 align="center">Contracts for Claude Code</h1>
+# Contracts for Claude Code
 
-<p align="center">
-  <strong>The open-source contract management system that is just a database and Claude Code.</strong>
-</p>
+Renewal decisions, notice deadlines, obligations and evidence in a database you own. MIT-licensed contract administration for Claude Code, Codex, OpenCode or Cursor.
 
-<p align="center">
-  Created by <a href="https://www.enterprisedna.co"><strong>Enterprise DNA</strong></a>. Free and open source. Works with Claude Code, Codex, OpenCode or Cursor.
-</p>
+| Do it yourself | We customise it | We run it for you |
+|---|---|---|
+| Free. Install, try the demo and import your contract register. | Your terms, fields, document connections and ContractSafe migration. | Installed and operated through Omni by Enterprise DNA. One setup fee, then a retainer. |
+| [Quick start](#quick-start) | [Get your version built](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=contractsafe&utm_source=github&utm_medium=customise) | [Book a call](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=contractsafe&utm_source=github&utm_medium=managed) |
 
-<!-- three-doors -->
-<table align="center">
-  <tr>
-    <td align="center"><strong>Do it yourself</strong><br/>Clone it, run it, own it. Free, MIT.<br/><a href="#quick-start">Quick start</a></td>
-    <td align="center"><strong>We customise it</strong><br/>Your fields, your rules, your ContractSafe data brought across.<br/><a href="https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=contractsafe">Book a call</a></td>
-    <td align="center"><strong>We run it for you</strong><br/>Installed, connected and operated inside Omni. Setup fee, then a retainer.<br/><a href="https://enterprisedna.co/omni/instead-of/contractsafe?utm_source=github&utm_medium=readme&utm_campaign=contractsafe">How it works</a></td>
-  </tr>
-</table>
+ContractSafe's current Maximize band for 1,001-2,500 contracts lists US$1,325 per month prepaid annually, or US$15,900 for twelve months. That is a public list-price scenario, not a customer's invoice. [Vendor pricing](https://www.contractsafe.com/pricing), checked 8 October 2026. See [research and six scores](docs/research.md).
 
-<p align="center">
-  <a href="#what-is-this">What is this</a> &bull;
-  <a href="#why-no-front-end">Why no front end</a> &bull;
-  <a href="#quick-start">Quick start</a> &bull;
-  <a href="#the-commands">Commands</a> &bull;
-  <a href="#instead-of-contractsafe">Instead of ContractSafe</a> &bull;
-  <a href="#want-it-installed-and-run-for-you">Installed for you</a> &bull;
-  <a href="#license">License</a>
-</p>
+## The five weekly jobs
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Node-20+-339933?style=flat-square" alt="Node 20+" />
-  <img src="https://img.shields.io/badge/PostgreSQL-any-336791?style=flat-square" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/PGlite-embedded-3ecf8e?style=flat-square" alt="PGlite" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT License" />
-</p>
-
----
-
-## What is this
-
-Contracts for Claude Code does the job you pay ContractSafe for, as a Postgres database and a set of agent commands. There is no web front end. You open the folder in [Claude Code](https://claude.com/claude-code) (or Codex, OpenCode, Cursor: see `AGENTS.md`) and ask for what you want in plain language. It runs the right query, and it can answer questions the ContractSafe dashboard cannot.
-
-<!-- TODO(author): the annual bill. One sentence: what a 10 to 50 person business typically pays ContractSafe per year, all in, with a source. -->
-
-Want the same thing with a web front end, or built on a different stack? That is a customisation, and it is exactly what Enterprise DNA does: [book a call](https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=contractsafe).
-
-<!-- TODO(author): two or three sentences on what this specific product covers and who it is for. -->
-
-## Why no front end
-
-- The front end was only ever there because the database was hard to talk to. That is no longer true.
-- Your data sits in plain Postgres tables you own. Any tool can read them. No export, no lock-in.
-- No seats, no tiers, no add-ons. Read [docs/why-no-front-end.md](docs/why-no-front-end.md) for the honest trade-offs too.
+Review renewals before the notice date, chase outstanding obligations, check reminders, collect signed evidence and review record retention. The fictional Harbour demo includes a missed nonrenewal date, stale activity, unassigned ownership, an overdue obligation after termination, and a record under legal hold. Dates are relative to the first seed. Reseeding preserves later changes.
 
 ## Quick start
 
-Sixty seconds, no database install (an embedded Postgres runs inside Node):
+Node 20 or later, Windows or Linux:
 
 ```bash
 git clone https://github.com/Enterprise-DNA-OS/contracts-for-claude-code.git
 cd contracts-for-claude-code
 npm install
 npm run demo
+npm test
+npm run view
+npm run docs
 ```
 
-Then open the folder in Claude Code and type a slash command. <!-- TODO(author): name the first command to try. -->
+Start with /renewals-due. PGlite runs locally in .data/db with no server install. DATABASE_URL selects shared Postgres. Use a separate DATA_DIR, run migrate without seed and read [the replacement guide](docs/replace-contractsafe.md) before real imports. Local operation permits one process at a time. Shared operation needs authenticated access, restricted database privileges and tested backups.
 
-### Use it with your own Postgres or Supabase
+## 26 CLI commands and 27 slash recipes
 
-Copy `.env.example` to `.env`, set `DATABASE_URL`, then `npm run migrate`. Same commands, shared data, no per-seat fee.
+/contracts, /contract, /renewals-due, /obligations-due, /reminders-due, /review-queue, /exposure, /owner-workload, /attention, /compliance, /activity, /weekly-review, /add-contract, /update-contract, /add-obligation, /complete-obligation, /add-reminder, /acknowledge-reminder, /review, /evidence, /retention, /log, /draft-renewal, /import, /export, /customise, /new-view. The CLI also includes help. [Arguments and calculations](docs/cli.md). Every command supports --json. Partial IDs and case-insensitive names work; ambiguous matches list candidates and exit 1.
 
-## The commands
+## Ten questions for your renewal meeting
 
-<!-- TODO(author): a table of the slash commands in .claude/commands and what each one does. -->
+ContractSafe already offers custom reports and plain-language search. Its [Smart Search help](https://www.contractsafe.com/support/ai-powered-natural-launguage-search), checked 8 October 2026, says reminder-date filtering is not available in natural-language search. These ten analyses work here today; they are not blanket claims that the vendor cannot produce similar reports.
 
-| Command | What it does |
-|---|---|
-| `/...` | ... |
+- Which notice deadlines have already passed? `renewals-due`
+- Which reminders are due in the next fourteen days? `reminders-due`
+- Which renewal decisions are missing or stale? `review-queue`
+- Which near-term agreements also have overdue obligations? `renewals-due`
+- Which active agreements have no signed evidence reference? `compliance`
+- Which closed agreements still have outstanding duties? `obligations-due`
+- Which owners have the most overdue work items? `owner-workload`
+- What annual value is recorded for each counterparty and currency? `exposure`
+- Which agreements have been quiet for more than fourteen days? `attention`
+- Which personal-information records need a retention review? `compliance`
 
-## Instead of contractsafe
+## Your first hour: ten things to ask for
 
-<!-- TODO(author): how to bring data across from ContractSafe; link docs/replace-contractsafe.md -->
+1. Put our name, logo and colours on the review paperwork.
+2. Show the notice deadlines before contract end dates.
+3. List reminders nobody has acknowledged.
+4. Show obligations still open after an agreement ended.
+5. Separate NZD and AUD exposure.
+6. Draft an internal renewal brief from the records.
+7. Test our ContractSafe export without saving changes.
+8. Add our document archive references and check owners.
+9. Add a business-unit field with a new migration.
+10. Build a read-only view for our Monday review.
 
-## Architecture
+## Paperwork and checks
 
+Change brand.json once. npm run docs renders internal renewal briefs, obligation registers and personal-information retention reviews. npm run view renders the weekly register and evidence exceptions. These are local HTML snapshots. They never send, sign or cancel an agreement. Contract clauses, notice methods and authentic documents still require a responsible reviewer.
+
+[Compliance checks](docs/compliance.md) cite NZ privacy Principle 9 and Australian APP 11 guidance, distinguish internal policies, preserve legal holds and flag records for review. They do not certify compliance or invent a fixed retention period. Evidence locations are references, not verified files. [Why no front end](docs/why-no-front-end.md) explains the base and the scoped additions Enterprise DNA can build.
+
+## Switch from ContractSafe
+
+```bash
+npm run contracts -- import contractsafe --file=/path/contracts.csv --actor="Migration operator" --dry-run
+npm run contracts -- import contractsafe --file=/path/contracts.csv --actor="Migration operator"
 ```
-contracts-for-claude-code/
-  CLAUDE.md                 how the operator wants this run (routing table + house rules)
-  AGENTS.md                 the same, for Codex / OpenCode / Cursor / Gemini CLI
-  .claude/commands/         the slash commands
-  scripts/                  the CLI the commands drive
-  scripts/lib/db.mjs        one adapter: DATABASE_URL (pg) or embedded PGlite
-  supabase/migrations/      plain SQL schema
-  supabase/seed.sql         demo data
-  docs/                     the thesis and the migration guide
-```
 
-## Built for coding agents
+The one-command import covers contract-list CSV records, with explicit mappings for your headings. It preserves original fields, starts records as drafts and rejects changed repeats for reconciliation. Signed files, reminders, obligations, permissions and signing history need separate mapping. [Full steps and exclusions](docs/replace-contractsafe.md). Export writes all six record sets to JSON; referenced files require their own backup.
 
-The database, CLI and command recipes work with Claude Code, Codex, OpenCode or Cursor. Ask your coding agent for a new command and have it implement and test the change against the same records.
+## Verification
 
-## Contributing
+npm test uses a temporary database and exercises all 26 commands, repeat seeds and migrations, renewal decision invalidation, reference ambiguity, evidence requirements, holds, import dry runs, repeat detection and full rollback. It also checks drafts, exports and escaped HTML. The same suite supports a fresh disposable Postgres database through TEST_DATABASE_URL. GitHub checks cover Linux, Windows and Postgres.
 
-Issues and pull requests are welcome. Keep the shape: plain SQL, a small CLI, a slash command per recurring job, no front end.
-
-## Want it installed and run for you?
-
-Enterprise DNA installs Contracts for Claude Code for your business, migrates your ContractSafe data, connects it to the rest of your tools, and runs it for you as part of **Omni**, our managed Command Center. One setup fee, then a monthly retainer.
-
-- Book a call: [enterprisedna.co/omni/book](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=contractsafe)
-- Read more: [enterprisedna.co/omni/instead-of/contractsafe](https://enterprisedna.co/omni/instead-of/contractsafe?utm_source=github&utm_medium=readme&utm_campaign=contractsafe)
-
-## License
-
-MIT. Copyright (c) 2026 Enterprise DNA.
+MIT licence. Not affiliated with ContractSafe or Anthropic. Hosting and agent use have separate costs. [Book 30 minutes with Sam](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=contractsafe&utm_source=github&utm_medium=readme).
